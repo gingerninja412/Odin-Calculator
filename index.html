@@ -5,7 +5,7 @@
     <title>Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script scr="script.js" defer></script>
+    <script src="script.js" defer></script>
     <script
       src="https://kit.fontawesome.com/8f584789cc.js"
       crossorigin="anonymous"
@@ -14,28 +14,29 @@
   <body>
     <div class="calculator-body">
       <div class="screen">
-        <h2 id="sumDisplay">Expression Of Sum</h2>
+        <h2 id="sumDisplay">+</h2>
         <div class="divider"></div>
-        <h2 id="numberDisplay">Single Number</h2>
+        <h2 id="numberDisplay"></h2>
       </div>
       <div class="keys">
-        <div class="key">1</div>
-        <div class="key">2</div>
-        <div class="key">3</div>
-        <div class="key">+</div>
-        <div class="key">4</div>
-        <div class="key">5</div>
-        <div class="key">6</div>
-        <div class="key">-</div>
-        <div class="key">7</div>
-        <div class="key">8</div>
-        <div class="key">9</div>
-        <div class="key"><i class="fa-solid fa-xmark"></i></div>
-        <div class="key">Clear</div>
-        <div class="key">0</div>
-        <div class="key">=</div>
-        <div class="key"><i class="fa-solid fa-divide"></i></div>
+        <div class="key number">1</div>
+        <div class="key number">2</div>
+        <div class="key number">3</div>
+        <div class="key operation">+</div>
+        <div class="key number">4</div>
+        <div class="key number">5</div>
+        <div class="key number">6</div>
+        <div class="key operation">-</div>
+        <div class="key number">7</div>
+        <div class="key number">8</div>
+        <div class="key number">9</div>
+        <div class="key operation"><i class="fa-solid fa-xmark"></i></div>
+        <div class="key" id="clear">clear</div>
+        <div class="key number">0</div>
+        <div class="key" id="equals">=</div>
+        <div class="key operation"><i class="fa-solid fa-divide"></i></div>
       </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </body>
 </html>
