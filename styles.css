@@ -14,4 +14,29 @@ body {
   border: 2px solid red;
   width: 600px;
   height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen {
+  width: 80%;
+  height: 100px;
+  background-color: #3c434f;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen h2 {
+  height: 50%;
+  color: white;
+  padding: 10px;
+  align-self: flex-end;
+}
+
+.divider {
+  border: 1px solid black;
+  width: 75%;
 }
