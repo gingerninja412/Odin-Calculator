@@ -5,6 +5,8 @@ const clear = $("#clear");
 const equals = $("#equals");
 const sumDisplay = $("#sumDisplay");
 const numberDisplay = $("#numberDisplay");
+const backspace = $("#backspace");
+const point = $("#point");
 
 //control variables
 const letters = /[A-Za-z]/;
@@ -14,30 +16,32 @@ const numbersCheck = /[0-9]/;
 //processing function
 function evaluate() {
   let tokenArray = sumDisplay.text().split(" ");
-  tokenArray.shift();
+  if (tokenArray[0] == "") {
+    tokenArray.shift();
+  }
   let number = numberDisplay.text();
+  console.log(number);
   if (number.length != 0 && letters.test(number) == false) {
     tokenArray.push(number);
   }
-  console.log(tokenArray);
   let currentOperation = "none";
   let accumulation = 0;
   tokenArray.forEach((element) => {
     if (numbersCheck.test(element) == true) {
       if (currentOperation == "none") {
-        accumulation = parseInt(element, 10);
+        accumulation = parseFloat(element, 10);
       }
       if (currentOperation == "add") {
-        accumulation = accumulation + parseInt(element, 10);
+        accumulation = accumulation + parseFloat(element, 10);
       }
       if (currentOperation == "subtract") {
-        accumulation = accumulation - parseInt(element, 10);
+        accumulation = accumulation - parseFloat(element, 10);
       }
       if (currentOperation == "multiply") {
-        accumulation = accumulation * parseInt(element, 10);
+        accumulation = accumulation * parseFloat(element, 10);
       }
       if (currentOperation == "divide") {
-        accumulation = accumulation / parseInt(element, 10);
+        accumulation = accumulation / parseFloat(element, 10);
       }
     } else if (symbols.test(element) == true) {
       if (element == "+") {
@@ -54,6 +58,7 @@ function evaluate() {
       }
     }
   });
+  accumulation = Math.round((accumulation + Number.EPSILON) * 100) / 100;
   return accumulation;
 }
 
@@ -75,6 +80,22 @@ operations.click(function () {
   let operation = $(this).text();
   if (numberDisplay.text().length == 0 || letters.test(number) == true) {
     numberDisplay.text("Error no number entered");
+  } else if (string[string.length - 1] == "=") {
+    string = number;
+    console.log("this works");
+    if ($(this).attr("id") == "multiply") {
+      string = string + ` *`;
+      sumDisplay.text(string);
+      numberDisplay.empty();
+    } else if ($(this).attr("id") == "divide") {
+      string = string + ` /`;
+      sumDisplay.text(string);
+      numberDisplay.empty();
+    } else {
+      string = string + ` ${operation}`;
+      sumDisplay.text(string);
+      numberDisplay.empty();
+    }
   } else if (string.length != 0) {
     let result = evaluate();
     if ($(this).attr("id") == "multiply") {
@@ -122,4 +143,24 @@ equals.click(function () {
   sumString = sumString + ` ${text} =`;
   sumDisplay.text(sumString);
   numberDisplay.text(result);
+});
+
+backspace.click(function () {
+  let text = numberDisplay.text().split("");
+  text.pop();
+  numberDisplay.text(text.join(""));
+});
+
+point.click(function () {
+  let text = numberDisplay.text();
+  if (text[text.length - 1] == "." || text.length == 0) {
+    numberDisplay.text("Please enter a number");
+    return;
+  }
+  if (letters.test(text) == true) {
+    numberDisplay.empty();
+    text = "";
+  }
+  text = text + $(this).text();
+  numberDisplay.text(text);
 });
