@@ -10,7 +10,6 @@ const numberDisplay = $("#numberDisplay");
 const letters = /[A-Za-z]/;
 const symbols = /[+\-/*]/;
 const numbersCheck = /[0-9]/;
-//processing functions
 
 //button Functions
 numbers.click(function () {
