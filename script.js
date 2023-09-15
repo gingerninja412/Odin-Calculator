@@ -51,3 +51,48 @@ clear.click(function () {
   sumDisplay.empty();
   numberDisplay.empty();
 });
+
+equals.click(function () {
+  let tokenArray = sumDisplay.text().split(" ");
+  tokenArray.shift();
+  let number = numberDisplay.text();
+  if (number.length != 0 && letters.test(number) == false) {
+    tokenArray.push(number);
+  }
+  let currentOperation = "none";
+  let accumulation = 0;
+  tokenArray.forEach((element) => {
+    if (numbersCheck.test(element) == true) {
+      if (currentOperation == "none") {
+        accumulation = parseInt(element, 10);
+      }
+      if (currentOperation == "add") {
+        accumulation = accumulation + parseInt(element, 10);
+      }
+      if (currentOperation == "subtract") {
+        accumulation = accumulation - parseInt(element, 10);
+      }
+      if (currentOperation == "multiply") {
+        accumulation = accumulation * parseInt(element, 10);
+      }
+      if (currentOperation == "divide") {
+        accumulation = accumulation / parseInt(element, 10);
+      }
+    } else if (symbols.test(element) == true) {
+      if (element == "+") {
+        currentOperation = "add";
+      }
+      if (element == "-") {
+        currentOperation = "subtract";
+      }
+      if (element == "*") {
+        currentOperation = "multiply";
+      }
+      if (element == "/") {
+        currentOperation = "divide";
+      }
+    }
+  });
+  numberDisplay.text(accumulation);
+  sumDisplay.empty();
+});
