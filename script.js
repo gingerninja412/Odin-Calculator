@@ -41,6 +41,11 @@ function evaluate() {
         accumulation = accumulation * parseFloat(element, 10);
       }
       if (currentOperation == "divide") {
+        if (element == 0) {
+          numberDisplay.text("You cannot divide by 0");
+          return "Invalid";
+        }
+
         accumulation = accumulation / parseFloat(element, 10);
       }
     } else if (symbols.test(element) == true) {
@@ -98,6 +103,9 @@ operations.click(function () {
     }
   } else if (string.length != 0) {
     let result = evaluate();
+    if (result == "Invalid") {
+      return;
+    }
     if ($(this).attr("id") == "multiply") {
       string = "";
       string = string + ` ${result} *`;
@@ -140,6 +148,9 @@ equals.click(function () {
   let text = numberDisplay.text();
   let sumString = sumDisplay.text();
   let result = evaluate();
+  if (result == "Invalid") {
+    return;
+  }
   sumString = sumString + ` ${text} =`;
   sumDisplay.text(sumString);
   numberDisplay.text(result);
