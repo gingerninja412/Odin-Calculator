@@ -11,7 +11,8 @@ body {
 }
 
 .calculator-body {
-  border: 2px solid red;
+  background-color: rgb(42, 42, 233);
+  border-radius: 20px;
   width: 600px;
   height: 600px;
   display: flex;
@@ -54,8 +55,11 @@ body {
 .key {
   width: 70px;
   height: 70px;
-  border: 2px solid red;
+  background-color: aquamarine;
+  border-left: 4px solid black;
+  border-top: 4px solid black;
   display: flex;
+  border-radius: 10px;
   justify-content: center;
   align-items: center;
   font-size: x-large;
@@ -63,4 +67,8 @@ body {
 
 .key:hover {
   background-color: crimson;
+}
+
+#backspace {
+  grid-column: 2;
 }
