@@ -46,3 +46,8 @@ operations.click(function () {
     }
   }
 });
+
+clear.click(function () {
+  sumDisplay.empty();
+  numberDisplay.empty();
+});
